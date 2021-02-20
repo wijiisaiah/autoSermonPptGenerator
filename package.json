@@ -20,6 +20,7 @@
   "homepage": "https://github.com/wijiisaiah/autoSermonPptGenerator#readme",
   "devDependencies": {
     "@types/express": "^4.17.11",
+    "axios": "^0.21.1",
     "pptxgenjs": "^3.4.0",
     "rxjs": "^6.6.3",
     "ts-loader": "^8.0.17",
