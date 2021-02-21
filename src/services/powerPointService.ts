@@ -2,7 +2,7 @@ import pptxgen from "pptxgenjs";
 
 export class PowerPointService {
 
-    public buildPowerPoint(): void {
+    public buildPowerPoint(passages: Passage[]): void {
         // 1. Create a new Presentation
         const pres = new pptxgen();
 

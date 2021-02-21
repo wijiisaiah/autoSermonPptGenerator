@@ -1,18 +1,20 @@
 import axios, {AxiosRequestConfig, AxiosResponse} from 'axios';
 import {ApiConstants} from "../../privateKeys/apiConstants";
-import {Constants} from "../constants";
+import {UrlService} from "./urlService";
+import {from, Observable} from "rxjs";
+import {Verse} from "../models/verse";
+import {map} from "rxjs/operators";
 
 export class BibleService {
 
     constructor() {
     }
 
-    public fetchBibleVerse(verse: string): void {
-        const baseURL = "https://api.scripture.api.bible/";
-        const bibleURL = "v1/bibles";
-
+    public fetchBibleVerse(bookId: string, chapter: number): Observable<Verse> {
+        const url = UrlService.getChapter(bookId, chapter) ;
+        const urlWithParams = UrlService.setParams(url, 'json');
         const clientServerOptions: AxiosRequestConfig = {
-            url: baseURL + bibleURL,
+            url: urlWithParams,
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -21,12 +23,9 @@ export class BibleService {
             responseType: 'json'
         }
 
-        axios(clientServerOptions).then((response: AxiosResponse<any>) => {
-            const worldEnglishProtestantBible = response.data.data.filter((bibleInfo: any) => {
-               return bibleInfo.id === Constants.worldEnglishBibleProestantId;
-            });
-            console.log(worldEnglishProtestantBible);
-        });
+        from(axios(clientServerOptions)).pipe(map(response => {
+            response.
+        }));
 
 
     }
