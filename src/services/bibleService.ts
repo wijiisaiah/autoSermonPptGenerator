@@ -4,14 +4,17 @@ import {UrlService} from "./urlService";
 import {from, Observable} from "rxjs";
 import {Verse} from "../models/verse";
 import {map} from "rxjs/operators";
+import {PassageConversions} from "../conversions/passageConversions";
+import {Passage} from "../models/passage";
+import {PassageDTO} from "../conversions/passageDTO";
 
 export class BibleService {
 
     constructor() {
     }
 
-    public fetchBibleVerse(bookId: string, chapter: number): Observable<Verse> {
-        const url = UrlService.getChapter(bookId, chapter) ;
+    public fetchPassage(bookId: string, chapter: number): Observable<Passage> {
+        const url = UrlService.getChapter(bookId, chapter);
         const urlWithParams = UrlService.setParams(url, 'json');
         const clientServerOptions: AxiosRequestConfig = {
             url: urlWithParams,
@@ -23,11 +26,11 @@ export class BibleService {
             responseType: 'json'
         }
 
-        from(axios(clientServerOptions)).pipe(map(response => {
-            response.
-        }));
-
-
+        return from(axios(clientServerOptions)).pipe(
+            map(response => {
+                return PassageConversions.fromPassageDTO(response.data.data as PassageDTO);
+            })
+        );
     }
 
 }

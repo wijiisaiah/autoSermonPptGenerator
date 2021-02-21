@@ -3,7 +3,7 @@ import * as Url from "url";
 
 export class UrlService {
     public static getWorldEnglishBibleURL(): string {
-        const webBibleURL = UrlService.toIdUrl(BibleIDs.worldEnglishBibleProestantId);
+        const webBibleURL = UrlService.toIdUrl(BibleIDs.worldEnglishBibleProtestantId);
         return CommonURLs.baseScriptureApiURL + CommonURLs.bibleURL + webBibleURL;
     }
 

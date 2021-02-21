@@ -1,5 +1,5 @@
 export class BibleIDs {
-    public static worldEnglishBibleProestantId = "9879dbb7cfe39e4d-04";
+    public static worldEnglishBibleProtestantId = "9879dbb7cfe39e4d-04";
 }
 
 export class CommonURLs {

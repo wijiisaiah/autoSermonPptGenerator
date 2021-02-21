@@ -1,6 +1,7 @@
 import {PowerPointService} from "./services/powerPointService";
 import {BibleService} from "./services/bibleService";
 import {BookNameToIdMap} from "./constants";
+import {Passage} from "./models/passage";
 
 const verses: string[] = [];
 
@@ -9,8 +10,10 @@ function main() {
 
     const powerPointService = new PowerPointService()
     const bibleService = new BibleService()
-    bibleService.fetchBibleVerse(BookNameToIdMap.nameToId.Acts, 2);
-    powerPointService.buildPowerPoint();
+    bibleService.fetchPassage(BookNameToIdMap.nameToId.Genesis, 1)
+        .subscribe((passage: Passage) => {
+            powerPointService.buildPowerPoint(passage);
+        });
 }
 
 main();
